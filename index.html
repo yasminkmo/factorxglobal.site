@@ -26,9 +26,9 @@ fbq('track', 'PageView');
 <link rel="dns-prefetch" href="https://images.converteai.net">
 <link rel="dns-prefetch" href="https://cdn.utmify.com.br">
 <link rel="dns-prefetch" href="https://www.clarity.ms">
-<link rel="preload" as="image" href="/global_images/banner-celestino-en-branco-sm.webp" type="image/webp" fetchpriority="high">
-<link rel="preload" as="image" href="/global_images/cards/card_back.webp" type="image/webp" fetchpriority="high">
-<link rel="preload" as="image" href="/global_images/cards/tower2_opt.webp" type="image/webp" fetchpriority="high">
+<link rel="preload" as="image" href="/banner-celestino-en-branco-sm.webp" type="image/webp" fetchpriority="high">
+<link rel="preload" as="image" href="/card_back.webp" type="image/webp" fetchpriority="high">
+<link rel="preload" as="image" href="/tower2_opt.webp" type="image/webp" fetchpriority="high">
 <link rel="prefetch" href="https://sp.factorxglobal.site/" as="document">
 <style>
 *,::before,::after{box-sizing:border-box}
@@ -120,7 +120,7 @@ h1 em{font-style:italic;color:#f4d480;background:linear-gradient(180deg,#ffd98d,
 </head>
 <body>
 <main class="shell">
-<header class="brand"><img src="/global_images/banner-celestino-en-branco-sm.webp" alt="Celestino" width="1000" height="345" fetchpriority="high" decoding="async"></header>
+<header class="brand"><img src="/banner-celestino-en-branco-sm.webp" alt="Celestino" width="1000" height="345" fetchpriority="high" decoding="async"></header>
 <section class="card-panel" id="panel">
 <div class="intro">
 <p class="eyebrow">Private Reading</p>
@@ -143,11 +143,11 @@ h1 em{font-style:italic;color:#f4d480;background:linear-gradient(180deg,#ffd98d,
 </main>
 <script>
 (function(){
-var BACK='/global_images/cards/card_back.webp';
+var BACK='/card_back.webp';
 var DATA=[
-{k:'tower',n:'The Tower',m:"There is a decision you've been putting off. You think you still have time to make it. The Tower says you don't — because something is about to fall before you decide, and it changes everything. I saw what it is. I saw when. And I saw what you lose if you're not ready.",src:'/global_images/cards/tower2_opt.webp'},
-{k:'magician',n:'The Magician',m:"In the last few months, you've felt something shift around you. Doors that should have opened… didn't. Opportunities that were “almost certain” disappeared. You blamed the timing. You blamed bad luck. It was neither. The Magician showed me the person behind it — someone who hugs you, smiles at you, and quietly works against you. When you hear the name, you'll remember one specific moment. And everything will make sense.",src:'/global_images/cards/magician2_opt.webp'},
-{k:'wheel',n:'The Wheel of Fortune',m:"Be honest with yourself: you always end up in the same place. The same kind of disappointment. The same kind of person. The same kind of ending — just with different faces. You've asked yourself “why does this keep happening to me?” more times than you'd admit. The Wheel finally answered. The reason has been with you since before you can remember. And once you see it, you cannot unsee it.",src:'/global_images/cards/wheel_of_fortune2_opt.webp'}
+{k:'tower',n:'The Tower',m:"There is a decision you've been putting off. You think you still have time to make it. The Tower says you don't — because something is about to fall before you decide, and it changes everything. I saw what it is. I saw when. And I saw what you lose if you're not ready.",src:'/tower2_opt.webp'},
+{k:'magician',n:'The Magician',m:"In the last few months, you've felt something shift around you. Doors that should have opened… didn't. Opportunities that were “almost certain” disappeared. You blamed the timing. You blamed bad luck. It was neither. The Magician showed me the person behind it — someone who hugs you, smiles at you, and quietly works against you. When you hear the name, you'll remember one specific moment. And everything will make sense.",src:'/magician2_opt.webp'},
+{k:'wheel',n:'The Wheel of Fortune',m:"Be honest with yourself: you always end up in the same place. The same kind of disappointment. The same kind of person. The same kind of ending — just with different faces. You've asked yourself “why does this keep happening to me?” more times than you'd admit. The Wheel finally answered. The reason has been with you since before you can remember. And once you see it, you cannot unsee it.",src:'/wheel_of_fortune2_opt.webp'}
 ];
 var rest=[DATA[1],DATA[2]];if(Math.random()<.5)rest.reverse();
 var deck=[DATA[0]].concat(rest);
