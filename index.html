@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Minha Carta do Dia — Cigana Esmeralda</title>
+<meta name="theme-color" content="#16295c">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  min-height:100vh;color:#f5ecd8;background-color:#0d0616;
+  background-image:
+    radial-gradient(ellipse 90% 55% at 20% 15%, rgba(160,60,200,.16), transparent 60%),
+    radial-gradient(ellipse 70% 45% at 85% 30%, rgba(120,30,150,.14), transparent 60%),
+    radial-gradient(ellipse 100% 60% at 50% 95%, rgba(233,186,47,.08), transparent 65%),
+    linear-gradient(180deg,#170a26 0%,#100818 55%,#0a0512 100%);
+  background-attachment:fixed;overflow-x:hidden
+}
+.wrap{max-width:460px;margin:0 auto;padding:26px 18px 50px}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px}
+.brand{font-weight:800;font-size:1.05rem;color:#e9ba2f;letter-spacing:.02em}
+.daytag{font-size:.72rem;font-weight:700;color:#c9b68f;background:rgba(233,186,47,.08);padding:5px 12px;border-radius:999px;border:1px solid rgba(233,186,47,.28)}
+
+/* ---- tela de nome (primeira visita) ---- */
+#gate{display:flex;flex-direction:column;align-items:center;text-align:center;padding:60px 6px 20px}
+#gate h1{font-family:Georgia,serif;font-size:1.5rem;color:#e9ba2f;margin-bottom:12px;line-height:1.3}
+#gate p{color:#d8cdb8;font-size:.95rem;margin-bottom:26px;line-height:1.5}
+#gate input{width:100%;padding:15px 18px;border-radius:14px;border:1px solid rgba(233,186,47,.3);background:rgba(255,255,255,.05);color:#fff;font-size:1rem;margin-bottom:14px;text-align:center}
+#gate input::placeholder{color:#9c8f6f}
+#gate button{width:100%;padding:16px;border:0;border-radius:999px;background:linear-gradient(135deg,#fff2c2,#e9ba2f);color:#241000;font-weight:800;font-size:1rem;cursor:pointer;box-shadow:0 10px 26px rgba(233,186,47,.35)}
+.hidden{display:none!important}
+
+/* ---- app principal ---- */
+.greet{text-align:center;margin-bottom:6px}
+.greet h1{font-family:Georgia,serif;font-size:1.4rem;color:#e9ba2f;line-height:1.3}
+.greet p{color:#c9b68f;font-size:.9rem;margin-top:4px}
+
+.card-stage{display:flex;justify-content:center;margin:26px 0 20px}
+.tarot-card{width:190px;aspect-ratio:3/5;border-radius:16px;position:relative;cursor:pointer}
+.tarot-inner{position:absolute;inset:0;border-radius:16px;background:linear-gradient(155deg,#2c1147,#0f0620);border:2px solid #e9ba2f;box-shadow:0 0 30px rgba(233,186,47,.3),0 14px 30px rgba(0,0,0,.5);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px;text-align:center}
+.tarot-inner svg{width:64%;margin-bottom:10px;opacity:.9}
+.tarot-name{font-family:Georgia,serif;font-size:1.05rem;color:#fff2c2;font-weight:700}
+.tarot-num{position:absolute;top:10px;left:50%;transform:translateX(-50%);font-size:.62rem;letter-spacing:.2em;color:#e9ba2f;text-transform:uppercase}
+
+.block{background:rgba(255,255,255,.04);border:1px solid rgba(233,186,47,.2);border-radius:16px;padding:18px 18px 16px;margin-bottom:14px}
+.block-label{font-size:.62rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#e9ba2f;margin-bottom:8px}
+.block p{font-size:.98rem;line-height:1.55;color:#f0e9d8}
+
+.step-block{background:linear-gradient(135deg,rgba(233,186,47,.14),rgba(120,30,150,.10));border-color:rgba(233,186,47,.4)}
+.step-block .block-label{color:#fff2c2}
+
+.progress-row{display:flex;gap:4px;margin:22px 0 4px}
+.progress-dot{flex:1;height:4px;border-radius:99px;background:rgba(233,186,47,.14)}
+.progress-dot.done{background:linear-gradient(90deg,#e9ba2f,#fff2c2)}
+.progress-caption{text-align:center;font-size:.72rem;color:#9c8f6f;margin-top:8px}
+
+.footer{margin-top:34px;text-align:center;font-size:.78rem;color:#786a4f}
+.reset-link{display:inline-block;margin-top:10px;color:#6b5a3e;font-size:.7rem;text-decoration:underline;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ===== GATE: pede o nome na primeira visita ===== -->
+  <div id="gate">
+    <h1>Antes de começarmos...</h1>
+    <p>Como você gostaria que eu me dirija a você nas suas mensagens diárias?</p>
+    <input type="text" id="nameInput" placeholder="Seu primeiro nome" maxlength="30">
+    <button id="btnStart">Começar Minha Jornada</button>
+  </div>
+
+  <!-- ===== APP PRINCIPAL ===== -->
+  <div id="app" class="hidden">
+    <div class="topbar">
+      <div class="brand">✨ Semente Cósmica</div>
+      <div class="daytag" id="dateTag"></div>
+    </div>
+
+    <div class="greet">
+      <h1 id="greetName">Bom dia</h1>
+      <p>Sua orientação de hoje já está pronta</p>
+    </div>
+
+    <div class="card-stage">
+      <div class="tarot-card">
+        <div class="tarot-inner">
+          <div class="tarot-num" id="cardNum"></div>
+          <div id="cardIcon"></div>
+          <div class="tarot-name" id="cardName"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-label">O universo está comunicando</div>
+      <p id="cardMsg"></p>
+    </div>
+
+    <div class="block step-block">
+      <div class="block-label">Seu passo de hoje</div>
+      <p id="cardStep"></p>
+    </div>
+
+    <div class="progress-row" id="progressRow"></div>
+    <p class="progress-caption" id="progressCaption"></p>
+
+    <div class="footer">
+      Volte amanhã para sua próxima orientação.
+      <br><span class="reset-link" id="resetLink">trocar nome</span>
+    </div>
+  </div>
+
+</div>
+
+<script>
+(function(){
+
+/* =========================================================
+   BASE DE 30 DIAS — carta + mensagem + passo do dia
+   ========================================================= */
+var DECK = [
+{ n:"O Louco", i:"path", d:"Existe uma parte de você que sabe exatamente o que precisa fazer, mas que insiste em esperar um sinal mais claro antes de agir. Hoje o universo te lembra que a clareza raramente vem antes do movimento — ela vem depois, como recompensa de quem teve coragem de dar o primeiro passo sem garantias. Sua linhagem não foi feita de mulheres que esperaram o momento perfeito; foi feita de mulheres que caminharam mesmo com medo.", s:"Escolha uma decisão que você vem adiando por medo do que pode dar errado. Hoje, dê o primeiro passo concreto nessa direção — não o passo final, só o primeiro. O resto se revela andando." },
+{ n:"O Mago", i:"star", d:"Você já tem, dentro de si, tudo que precisa para mudar sua realidade financeira e emocional. O bloqueio nunca foi de recursos — foi de permissão que te tiraram, geração após geração, através da inveja e do medo alheio. Hoje essa energia começa a se reorganizar a seu favor. As ferramentas estão na sua mesa; falta você reconhecer que pode usá-las sem pedir licença.", s:"Escolha uma tarefa pequena que você vem adiando há semanas, dessas que ficam só de ideia. Finalize ela hoje, do começo ao fim, sem desculpas. Isso reprograma sua relação com a própria capacidade." },
+{ n:"A Sacerdotisa", i:"moon", d:"Sua intuição está mais afiada que o normal nos próximos dias — é a sua linhagem falando mais alto, tentando te proteger de algo que a lógica ainda não enxergou. Muitas mulheres da sua família tiveram esse dom e nunca souberam nomeá-lo; aprenderam a chamar de 'implicância' ou 'exagero'. Você não precisa mais silenciar esse sentido.", s:"Antes de tomar qualquer decisão importante hoje — inclusive as pequenas, tipo confiar ou não em alguém — pare, feche os olhos por um minuto e pergunte internamente o que seu corpo sente, não o que sua cabeça argumenta." },
+{ n:"A Imperatriz", i:"crown", d:"A abundância que o universo separou pra você não é uma promessa distante — ela já começou a se mover, mesmo que ainda não seja visível nas suas contas. A Imperatriz não fala de sorte, fala de direito ancestral: você nasceu para ter fartura, não escassez, e cada dia que reconhece isso enfraquece um pouco mais o ciclo antigo da sua família.", s:"Escreva à mão 3 coisas que já floresceram na sua vida este ano, por menores que pareçam. Reconhecer a abundância que já existe é o que abre espaço para a que está vindo." },
+{ n:"O Imperador", i:"shield", d:"Existe uma diferença entre carregar tudo sozinha e ter estrutura. Você vem confundindo essas duas coisas há anos, achando que precisa dar conta de tudo pra provar seu valor. Hoje o convite é diferente: organizar não é sobre controle, é sobre criar um chão firme onde a abundância possa pousar sem escorregar.", s:"Escolha uma pendência — financeira, de casa, ou emocional — que está te pesando por falta de organização, não por falta de dinheiro ou tempo. Resolva o primeiro passo dela hoje." },
+{ n:"O Hierofante", i:"book", d:"Nem toda sabedoria precisa ser descoberta sozinha. Existe conhecimento guardado em outras pessoas, em outras gerações, esperando para ser repassado a você — mas ele só chega quando você para de insistir em resolver tudo isolada. Sua ancestral mais próxima já passou por isso; a diferença é que ninguém perguntou a ela.", s:"Procure alguém que você respeita — pode ser da família ou não — e peça um conselho sincero sobre algo que te incomoda. Ouça sem se defender, só absorva." },
+{ n:"Os Enamorados", i:"heart", d:"Uma escolha sobre um vínculo importante está pedindo mais honestidade do que você tem se permitido ter — consigo mesma, principalmente. Relações que drenam energia costumam se disfarçar de rotina, e é fácil confundir hábito com propósito. O universo não está pedindo pressa aqui, está pedindo verdade.", s:"Anote, com sinceridade, os prós e contras reais de uma relação que você vem evitando avaliar. Não precisa agir hoje — só precisa parar de fingir que não vê o que já sabe." },
+{ n:"O Carro", i:"wheel", d:"Você já construiu embalo suficiente para não precisar mais pedir permissão pra avançar. O medo de errar tem te fazendo andar mais devagar do que precisaria — mas parar agora significa perder justamente o momento em que as coisas começariam a fluir com menos esforço.", s:"Dê um passo concreto, mesmo pequeno, em direção a um objetivo que você já vem buscando há tempos. Movimento gera mais movimento; hoje não é dia de planejar, é dia de agir." },
+{ n:"A Força", i:"infinity", d:"A força que sua linhagem te deixou não é a força de reagir com raiva às provocações — é a força de manter a firmeza mesmo diante do caos, sem se deixar arrastar por ele. Isso não é fraqueza, é domínio. Quem te provocar hoje está testando exatamente essa parte de você que já amadureceu mais do que imagina.", s:"Se algo ou alguém te tirar do sério hoje, antes de reagir, respire fundo três vezes e espere passar o primeiro impulso. A resposta que vem depois costuma ser mais sábia." },
+{ n:"O Eremita", i:"lantern", d:"Você tem passado tanto tempo respondendo às necessidades dos outros que esqueceu o som da própria voz interna. O universo está pedindo um recuo, não como fuga, mas como forma de escutar o que só aparece no silêncio — a orientação que você busca fora já está dentro, só precisa de espaço pra ser ouvida.", s:"Reserve pelo menos 15 minutos hoje sem celular, sem tarefas, só com seus próprios pensamentos. Não precisa meditar formalmente — só estar presente consigo mesma." },
+{ n:"A Roda da Fortuna", i:"circle", d:"Um ciclo antigo está virando a seu favor, e os sinais dessa virada costumam ser pequenos no início — uma mensagem inesperada, uma porta que se abre sem esforço, uma coincidência boa demais para ser só coincidência. A roda não avisa com pompa; ela só espera que você esteja atenta o suficiente para reconhecer.", s:"Fique atenta a qualquer convite, mensagem ou oportunidade inesperada que aparecer hoje, mesmo que pareça pequena ou fora do seu plano original. Diga sim antes de racionalizar demais." },
+{ n:"A Justiça", i:"scale", d:"Existe um desequilíbrio silencioso em algumas das suas relações — você tem dado mais do que recebido, e chamado isso de amor ou dever, quando às vezes é só um padrão que nunca foi questionado. O universo pede equilíbrio, não como cobrança, mas como forma de proteger sua própria energia.", s:"Avalie com honestidade se existe alguma relação em que você está doando além do que recebe de volta. Não precisa cortar nada hoje — só reconhecer, e talvez ajustar um pequeno limite." },
+{ n:"O Enforcado", i:"drop", d:"Nem toda decisão pede pressa. Às vezes o universo pede exatamente o oposto do que a ansiedade sugere: pausa. Forçar um desfecho agora pode fechar portas que se abririam sozinhas se você desse mais tempo pro processo amadurecer.", s:"Se existe uma decisão difícil pedindo resposta hoje, permita-se adiar por mais um dia. Durma sobre ela antes de agir — a clareza de amanhã costuma valer mais que a pressa de hoje." },
+{ n:"A Morte", i:"leaf", d:"Um ciclo está se encerrando dentro de você, mesmo que doa reconhecer isso. Não é castigo nem perda — é o espaço necessário se abrindo para algo que ainda não tem forma, mas que já está a caminho. Segurar o que já cumpriu seu papel só atrasa o que vem depois.", s:"Identifique algo que já não serve mais na sua vida — um pensamento repetitivo, um objeto carregado de peso emocional, um hábito que te esgota — e dê o primeiro passo consciente para deixar ir." },
+{ n:"A Temperança", i:"cup", d:"Você não precisa resolver tudo de uma vez só porque tudo parece urgente ao mesmo tempo. Essa sensação de sobrecarga geralmente vem menos da quantidade real de problemas e mais da forma como você tenta encará-los todos juntos. Equilíbrio não é fazer menos — é fazer um de cada vez, com presença.", s:"Escolha uma tarefa grande que está te pesando e divida ela em partes pequenas hoje. Execute só a primeira parte, sem se cobrar o restante ainda." },
+{ n:"O Diabo", i:"chain", d:"Existe uma amarra que você conhece bem, mesmo que evite olhar direto pra ela — um medo antigo, um hábito que drena, ou uma pessoa que te mantém pequena. Ela não vai embora sozinha; precisa ser encarada de frente, com a consciência de que reconhecer a corrente já é o primeiro passo pra quebrá-la.", s:"Nomeie, mesmo que só pra você mesma, um padrão específico que sente que te prende. Escreva ele no papel — dar nome ao que assombra tira parte do poder que isso tem sobre você." },
+{ n:"A Torre", i:"bolt", d:"Uma mudança brusca pode estar se aproximando, e o instinto normal é temer isso como se fosse desgraça. Mas a Torre raramente destrói o que é sólido — ela derruba o que já estava rachado por dentro, abrindo espaço para uma estrutura mais verdadeira se erguer no lugar.", s:"Se algo inesperado desestabilizar seu dia hoje, resista ao impulso de entrar em pânico. Respire e pergunte: o que isso pode estar abrindo espaço para eu construir de novo, melhor?" },
+{ n:"A Estrela", i:"sparkle", d:"Depois de um período pesado, a esperança volta a ter lugar. Não como ingenuidade, mas como confiança reconstruída aos poucos, tijolo por tijolo. A Estrela não promete que tudo já está resolvido — ela confirma que o pior já passou, e que agora é hora de voltar a acreditar.", s:"Escreva um desejo específico no papel e guarde num lugar significativo pra você. Não precisa contar pra ninguém — só plante essa intenção com fé de que ela está sendo ouvida." },
+{ n:"A Lua", i:"crescent", d:"Nem tudo que parece hoje é exatamente o que é. Existe névoa em algo — uma situação, uma pessoa, uma suposição — que sua mente está tentando decifrar sem ter todos os fatos ainda. A Lua pede cautela: confie mais no que é confirmado do que no que é sentido pela metade.", s:"Antes de acreditar em um boato, suposição ou interpretação de algo que te incomodou hoje, busque a fonte direta antes de tirar conclusões. Clareza vem de confirmação, não de suspeita." },
+{ n:"O Sol", i:"sun", d:"Existe uma leveza disponível hoje que faz tempo você não permite entrar. As coisas tendem a fluir com menos resistência — não porque os problemas sumiram, mas porque sua energia hoje está mais alinhada para lidar com eles sem tanto peso.", s:"Faça algo que te dá alegria genuína, mesmo que pareça pequeno demais pra 'merecer' seu tempo hoje. Alegria não é recompensa por produtividade — é combustível pra ela." },
+{ n:"O Julgamento", i:"trumpet", d:"Existe um chamado interno insistindo há dias, e você tem adiado escutá-lo com desculpas razoáveis. Esse chamado normalmente pede posicionamento — uma verdade que precisa ser dita, uma decisão que precisa ser assumida. O universo recompensa quem finalmente para de fugir do próprio despertar.", s:"Tome hoje uma decisão específica que você vem adiando há dias, mesmo pequena. Adiar mais um dia só alimenta o mesmo ciclo — agir hoje já é suficiente pra quebrá-lo." },
+{ n:"O Mundo", i:"globe", d:"Existe uma sensação de conclusão no ar — algo que você vem construindo está chegando num ponto de consolidação, mesmo que ainda não pareça 'pronto' aos seus próprios olhos. Celebrar o caminho percorrido até aqui não é vaidade, é reconhecimento merecido de esforço real.", s:"Celebre conscientemente uma vitória, mesmo pequena, de forma intencional hoje. Diga em voz alta ou escreva o que você conquistou — reconhecimento consolida o próximo ciclo." },
+{ n:"A Imperatriz", i:"crown", d:"Segunda vez que a Imperatriz aparece no seu ciclo — sinal de que a energia de abundância que começou a se mover está se consolidando de forma mais estável. Não é mais só potencial; está virando padrão. Continue nutrindo essa relação de merecimento com você mesma.", s:"Trate-se com um cuidado extra hoje, sem culpa — um descanso merecido, uma refeição que te nutre de verdade, um momento só seu. Abundância também se pratica no corpo, não só na conta bancária." },
+{ n:"A Roda da Fortuna", i:"circle", d:"A roda gira de novo, trazendo confirmação: o que começou a se mover semanas atrás está ganhando força real, mesmo que os resultados completos ainda não sejam visíveis. Ciclos favoráveis raramente aparecem de forma explosiva — eles se acumulam, silenciosamente, até se tornarem inegáveis.", s:"Reveja algo que começou a melhorar nas últimas semanas — por menor que pareça — e reforce conscientemente essa direção, dando mais atenção e energia a ela hoje." },
+{ n:"A Força", i:"infinity", d:"Sua resiliência está sendo testada de novo, mas dessa vez com um propósito diferente: provar pra você mesma, não pros outros, que você já é mais forte do que era antes. Cada desafio superado deixa um lastro que os próximos desafios não conseguem apagar.", s:"Lembre conscientemente de um momento difícil que você já superou no passado. Se você superou aquilo, tem tudo pra superar o que enfrenta agora — repita isso a si mesma quantas vezes precisar hoje." },
+{ n:"A Estrela", i:"sparkle", d:"A esperança volta a brilhar de forma mais consistente agora, menos como um lampejo passageiro e mais como uma base que se firma. É dia de plantar uma nova intenção — não pra corrigir o passado, mas pra construir o próximo capítulo com mais clareza do que o anterior teve.", s:"Defina uma meta pequena e realista para os próximos 7 dias. Escreva ela de forma específica, não genérica — metas vagas raramente se cumprem, metas claras se manifestam." },
+{ n:"O Sol", i:"sun", d:"A clareza mental de hoje favorece conversas que você vem adiando por medo do desconforto. Verdades ditas com leveza tendem a ser melhor recebidas do que verdades guardadas até explodirem sozinhas mais tarde.", s:"Tenha uma conversa honesta que você vem evitando com alguém importante na sua vida. Não precisa ser confronto — pode ser simplesmente dizer o que você sente de forma direta e calma." },
+{ n:"O Mundo", i:"globe", d:"Você está chegando ao fechamento deste primeiro ciclo de 30 dias de trabalho espiritual — e mesmo que as mudanças pareçam graduais demais pra perceber de dentro, olhando de fora, elas são reais. Reconhecer o próprio progresso é parte essencial de sustentar ele.", s:"Anote pelo menos 3 mudanças, por menores que sejam, que você percebeu em si mesma neste último mês — no pensamento, no comportamento ou na energia ao redor de você." },
+{ n:"O Mago", i:"star", d:"O ciclo recomeça, mas você já não é a mesma mulher de 30 dias atrás. As ferramentas que sempre estiveram à sua disposição agora estão mais afiadas, porque você já provou a si mesma, na prática, que sabe usá-las. Esse novo ciclo começa de um patamar mais alto que o anterior.", s:"Comece hoje algo novo — uma tarefa, uma conversa, um projeto — com a confiança de quem já se testou e não desistiu. Confiança real vem de repetição, não de motivação passageira." },
+{ n:"A Imperatriz", i:"crown", d:"Fechando este novo início com a energia da abundância plena, o universo confirma o que já vinha sendo sussurrado nas últimas semanas: você está no caminho certo, mesmo quando os resultados ainda não são totalmente visíveis. Continuar é o único trabalho que resta.", s:"Agradeça em voz alta por algo específico que aconteceu neste ciclo, mesmo que pareça pequeno. Gratidão consciente fecha o ciclo com força e abre espaço pro próximo com ainda mais clareza." }
+];
+
+var ICONS = {
+star:'<svg viewBox="0 0 64 64" fill="none" stroke="#e9ba2f" stroke-width="1.4"><path d="M32 6l7 18 19 2-14 13 4 19-16-10-16 10 4-19-14-13 19-2z"/></svg>',
+moon:'<svg viewBox="0 0 64 64" fill="none" stroke="#e9ba2f" stroke-width="1.4"><path d="M40 8a24 24 0 1 0 0 48 20 20 0 0 1 0-48z"/></svg>',
+crown:'<svg viewBox="0 0 64 64" fill="none" stroke="#e9ba2f" stroke-width="1.4"><path d="M8 44l6-20 12 12 6-20 6 20 12-12 6 20z"/><circle cx="32" cy="14" r="3"/></svg>',
+shield:'<svg viewBox="0 0 64 64" fill="none" stroke="#e9ba2f" stroke-width="1.4"><path d="M32 6l22 8v16c0 16-10 26-22 30-12-4-22-14-22-30V14z"/></svg>',
+book:'<svg viewBox="0 0 64 64" fill="none" stroke="#e9ba2f" stroke-width="1.4"><path d="M10 12h18v40H10zM36 12h18v40H36zM10 12c4 4 14 4 18 0M36 12c4 4 14 4 18 0"/></svg>',
+heart:'<svg viewBox="0 0 64 64" fill="none" stroke="#e9ba2f" stroke-width="1.4"><path d="M32 54S8 38 8 22a12 12 0 0122-8 12 12 0 0122 8c0 16-24 32-24 32z"/></svg>',
+wheel:'<svg viewBox="0 0 64 64" fill="none" stroke="#e9ba2f" stroke-width="1.4"><circle cx="32" cy="32" r="22"/><circle cx="32" cy="32" r="4"/><path d="M32 10v10M32 44v10M10 32h10M44 32h10"/></svg>',
+infinity:'<svg viewBox="0 0 64 64" fill="none" stroke="#e9ba2f" stroke-width="1.4"><path d="M18 32c0-8 8-8 14 0s14 8 14 0-8-8-14 0-14 8-14 0z"/></svg>',
+lantern:'<svg viewBox="0 0 64 64" fill="none" stroke="#e9ba2f" stroke-width="1.4"><path d="M32 6v10M20 22h24l-3 28H23zM26 22v28M38 22v28"/></svg>',
+circle:'<svg viewBox="0 0 64 64" fill="none" stroke="#e9ba2f" stroke-width="1.4"><circle cx="32" cy="32" r="22"/><path d="M32 10a22 22 0 010 44"/></svg>',
+scale:'<svg viewBox="0 0 64 64" fill="none" stroke="#e9ba2f" stroke-width="1.4"><path d="M32 6v46M14 18h36M14 18l-8 16h16zM50 18l-8 16h16z"/></svg>',
+drop:'<svg viewBox="0 0 64 64" fill="none" stroke="#e9ba2f" stroke-width="1.4"><path d="M32 6c10 16 18 26 18 36a18 18 0 01-36 0c0-10 8-20 18-36z"/></svg>',
+leaf:'<svg viewBox="0 0 64 64" fill="none" stroke="#e9ba2f" stroke-width="1.4"><path d="M12 52C12 24 40 12 54 10c-2 14-14 42-42 42z"/></svg>',
+cup:'<svg viewBox="0 0 64 64" fill="none" stroke="#e9ba2f" stroke-width="1.4"><path d="M16 12h32l-4 24a12 12 0 01-24 0z"/><path d="M24 48h16v8H24z"/></svg>',
+chain:'<svg viewBox="0 0 64 64" fill="none" stroke="#e9ba2f" stroke-width="1.4"><ellipse cx="24" cy="24" rx="10" ry="7" transform="rotate(-30 24 24)"/><ellipse cx="40" cy="40" rx="10" ry="7" transform="rotate(-30 40 40)"/></svg>',
+bolt:'<svg viewBox="0 0 64 64" fill="none" stroke="#e9ba2f" stroke-width="1.4"><path d="M36 6L14 36h14l-4 22 22-30H32z"/></svg>',
+sparkle:'<svg viewBox="0 0 64 64" fill="none" stroke="#e9ba2f" stroke-width="1.4"><path d="M32 8v14M32 42v14M8 32h14M42 32h14M14 14l10 10M40 40l10 10M50 14L40 24M24 40L14 50"/></svg>',
+crescent:'<svg viewBox="0 0 64 64" fill="none" stroke="#e9ba2f" stroke-width="1.4"><path d="M40 8a24 24 0 100 48 20 20 0 010-48z"/></svg>',
+sun:'<svg viewBox="0 0 64 64" fill="none" stroke="#e9ba2f" stroke-width="1.4"><circle cx="32" cy="32" r="12"/><path d="M32 4v10M32 50v10M4 32h10M50 32h10M12 12l7 7M45 45l7 7M52 12l-7 7M19 45l-7 7"/></svg>',
+trumpet:'<svg viewBox="0 0 64 64" fill="none" stroke="#e9ba2f" stroke-width="1.4"><path d="M8 30l30-14v32L8 34z"/><path d="M38 24c8 0 18 4 18 8s-10 8-18 8"/></svg>',
+globe:'<svg viewBox="0 0 64 64" fill="none" stroke="#e9ba2f" stroke-width="1.4"><circle cx="32" cy="32" r="22"/><path d="M10 32h44M32 10c8 8 8 34 0 44M32 10c-8 8-8 34 0 44"/></svg>',
+path:'<svg viewBox="0 0 64 64" fill="none" stroke="#e9ba2f" stroke-width="1.4"><path d="M10 50c10-30 24-40 44-38M40 8l6 4-4 6"/></svg>'
+};
+
+/* =========================================================
+   CÁLCULO DO DIA (ciclo contínuo de 30 dias, ligado à data real)
+   ========================================================= */
+function diaDoAno(d){
+  var start = new Date(d.getFullYear(),0,0);
+  var diff = d - start;
+  return Math.floor(diff / 86400000);
+}
+function getCycleIndex(){
+  var hoje = new Date();
+  var doy = diaDoAno(hoje);
+  return doy % 30; // 0-29
+}
+
+var MESES = ["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
+
+function formatarData(){
+  var hoje = new Date();
+  return hoje.getDate() + " de " + MESES[hoje.getMonth()];
+}
+
+/* =========================================================
+   RENDER
+   ========================================================= */
+function renderApp(){
+  var idx = getCycleIndex();
+  var item = DECK[idx];
+  var nome = localStorage.getItem('ce_nome') || '';
+
+  document.getElementById('dateTag').textContent = formatarData();
+  document.getElementById('greetName').textContent = nome ? ('Bom dia, ' + nome) : 'Bom dia';
+  document.getElementById('cardNum').textContent = 'Dia ' + (idx+1) + ' de 30';
+  document.getElementById('cardIcon').innerHTML = ICONS[item.i] || '';
+  document.getElementById('cardName').textContent = item.n;
+  document.getElementById('cardMsg').textContent = item.d;
+  document.getElementById('cardStep').textContent = item.s;
+
+  var row = document.getElementById('progressRow');
+  row.innerHTML = '';
+  for(var i=0;i<30;i++){
+    var dot = document.createElement('div');
+    dot.className = 'progress-dot' + (i<=idx ? ' done' : '');
+    row.appendChild(dot);
+  }
+  document.getElementById('progressCaption').textContent = 'Ciclo de 30 dias — recomeça automaticamente';
+}
+
+/* =========================================================
+   GATE DE NOME
+   ========================================================= */
+function showApp(){
+  document.getElementById('gate').classList.add('hidden');
+  document.getElementById('app').classList.remove('hidden');
+  renderApp();
+}
+
+document.getElementById('btnStart').addEventListener('click', function(){
+  var val = document.getElementById('nameInput').value.trim();
+  if(val){ localStorage.setItem('ce_nome', val); }
+  showApp();
+});
+document.getElementById('nameInput').addEventListener('keydown', function(e){
+  if(e.key === 'Enter'){ document.getElementById('btnStart').click(); }
+});
+document.getElementById('resetLink').addEventListener('click', function(){
+  localStorage.removeItem('ce_nome');
+  document.getElementById('nameInput').value = '';
+  document.getElementById('app').classList.add('hidden');
+  document.getElementById('gate').classList.remove('hidden');
+});
+
+// Se já tem nome salvo, pula direto pro app
+if(localStorage.getItem('ce_nome') !== null){
+  showApp();
+}
+})();
+</script>
+</body>
+</html>
